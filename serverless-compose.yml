@@ -2,8 +2,12 @@ services:
   service-a:
     path: service-a
     dependsOn: shared
+    params:
+      sharedValueA: ${shared.sharedValueA}
   service-b:
     path: service-b
     dependsOn: shared
+    params:
+      sharedValueB: ${shared.sharedValueB}
   shared:
     path: shared
