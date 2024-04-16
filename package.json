@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "preinstall": "echo \"PRE INSTALL\" && exit 0",
     "postinstall": "echo \"POST INSTALL\" && exit 0",
-    "posttest": "sls deploy:shared && cd service-a"
+    "posttest": "sls shared:deploy && cd service-a"
   },
   "author": "",
   "license": "ISC",
