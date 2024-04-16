@@ -1,6 +1,10 @@
+
+const service1 = require('service/server1');
+
 module.exports.handler = async (event) => {
 
   console.log('in beta 3');
+  service1();
   return {
     statusCode: 200,
     body: JSON.stringify(
