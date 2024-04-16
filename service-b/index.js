@@ -2,6 +2,7 @@ module.exports.handler = async (event) => {
 
   console.log('in SERVICE-B...');
   console.log(`SHARED_VALUE:${process.env.SHARED_VALUE}`);
+  console.log(`STAGE: ${process.env.STAGE}`);
 
   return {
     statusCode: 200,
