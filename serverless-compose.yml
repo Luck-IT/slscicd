@@ -1,0 +1,9 @@
+services:
+  service-a:
+    path: service-a
+    dependsOn: shared
+  service-b:
+    path: service-b
+    dependsOn: shared
+  shared:
+    path: shared
