@@ -5,11 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "preinstall": "echo \"PRE INSTALL\" && exit 0",
-    "postinstall": "echo \"POST INSTALL\" && exit 0"
+    "postinstall": "echo \"POST INSTALL\" && exit 0",
+    "posttest": "sls deploy:shared && cd service-a"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@serverless/compose": "^1.3.0"
+    "@serverless/compose": "^1.3.0",
+    "serverless-plugin-scripts": "^1.0.2"
   }
 }
