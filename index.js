@@ -1,5 +1,7 @@
 module.exports.handler = async (event) => {
-		return {
+
+  console.log('in beta');
+  return {
     statusCode: 200,
     body: JSON.stringify(
       {
