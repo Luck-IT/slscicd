@@ -3,6 +3,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
+  stage: ${opt:stage,'dev'}
   runtime: nodejs18.x
 
 functions:
