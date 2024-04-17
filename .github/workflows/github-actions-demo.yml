@@ -19,7 +19,7 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: serverless deploy
+      - name: serverless deploy test
         uses: hdev14/sls-deploy-action@main
         with:
           awsAccessKeyID: ${{ secrets.AWS_ACCESS_KEY_ID }}
