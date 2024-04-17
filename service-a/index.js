@@ -1,4 +1,5 @@
 
+const dayjs = require('dayjs');
 
 
 module.exports.handler = async (event) => {
@@ -6,12 +7,12 @@ module.exports.handler = async (event) => {
   console.log('in SERVICE-A....');
   console.log(`SHARED_VALUE:${process.env.SHARED_VALUE}`);
   console.log(`STAGE: ${process.env.stage}`)
-
+  console.log(`TRIGGER at ${dayjs().format('YYYY-MM-DD HH:mm:ss.SSSz')}`)
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Go Serverless v3.0! Your function executed successfully!',
+        message: `Trigger @ ${dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')}`,
         input: event,
       },
       null,
