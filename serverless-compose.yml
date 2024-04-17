@@ -1,13 +1,15 @@
 services:
+  shared:
+    path: shared
   service-a:
     path: service-a
-    dependsOn: shared
+    dependsOn:
+      - shared
     params:
       sharedValueA: ${shared.sharedValueA}
   service-b:
     path: service-b
-    dependsOn: shared
+    dependsOn:
+      - shared
     params:
       sharedValueB: ${shared.sharedValueB}
-  shared:
-    path: shared
