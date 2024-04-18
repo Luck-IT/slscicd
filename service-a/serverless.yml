@@ -33,7 +33,7 @@ provider:
 custom:
   serverless-layers:
     layersDeploymentBucket: "sls-s3-layer-${self:provider.stage}"
-    customHash: 202404181401
+    customHash: 202404181414
     packageManager: npm
     compileDir: .serverless
     dependenciesPath: ./package.json
