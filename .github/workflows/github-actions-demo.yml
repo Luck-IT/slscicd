@@ -37,6 +37,7 @@ jobs:
           pwd
           npm install -g serverless
           npm install -D @serverless/compose
+          npm install -D serverless-layers
       - name: serverless deploy
         run: sls deploy --stage beta
         env:
