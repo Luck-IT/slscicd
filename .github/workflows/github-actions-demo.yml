@@ -2,6 +2,8 @@ name: Deploy to AWS[Beta]
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 permissions: read-all
+env:
+  service: service-a service-b
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -23,6 +25,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: check node version
+        run: node -v
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
       - name: install serverless
         run: |
           pwd
