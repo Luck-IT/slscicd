@@ -33,11 +33,12 @@ provider:
 custom:
   serverless-layers:
     layersDeploymentBucket: "sls-s3-layer-${self:provider.stage}"
-    customHash: 202404181418
+    customHash: 202404181601
     packageManager: npm
-    compileDir: .serverless
-    dependenciesPath: ./package.json
-    compatibleRuntimes: ["nodejs18.x"]
+#    compileDir: .serverless
+#    dependenciesPath: package.json
+    customInstallationCommand: npm install
+    compatibleRuntimes: [ "nodejs18.x" ]
     NODE_ENV: ${self:provider.stage}
 plugins:
   - serverless-layers
