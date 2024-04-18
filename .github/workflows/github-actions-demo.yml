@@ -5,7 +5,7 @@ permissions: read-all
 env:
   service: service-a service-b
 jobs:
-  Explore-GitHub-Actions:
+  deploy_to_aws_using_serverlessFramework:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -28,10 +28,15 @@ jobs:
       - name: check node version
         run: node -v
       - name: Cache node modules
+        id: npmCache
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
+      - if: ${{ steps.npmCache.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
       - name: install serverless
         run: |
           pwd
