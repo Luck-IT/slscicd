@@ -9,7 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@serverless/compose": "^1.3.0",
     "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "serverless-layers": "^2.5.4",
+    "@serverless/compose": "^1.3.0"
   }
 }

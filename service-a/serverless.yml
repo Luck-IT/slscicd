@@ -1,13 +1,46 @@
 service: service-a
 frameworkVersion: '3'
 
+
+package:
+  exclude:
+    - "*.md"
+    - "*.rdb"
+    - .debug
+    - .history
+    - .idea
+    - .vscode
+    - __tests__
+    - config/debug.toml
+    - config/development.toml
+    - config/test.toml
+    - node_modules
+    - serverless
+    - .serverless
+    - script
+
 provider:
   name: aws
   runtime: nodejs18.x
   stage: ${opt:stage,'dev'}
+  region: us-east-1
+  deploymentBucket:
+    name: sls-cd-demo-layers-${self:provider.stage}-${self:provider.region}
   environment:
     SHARED_VALUE: ${param:sharedValueA}
+  timeout: 30
 
+custom:
+  serverless-layers:
+    layersDeploymentBucket: "sls-s3-layer-${self:provider.stage}"
+    customHash: 202404181401
+    packageManager: npm
+    compileDir: .serverless
+    dependenciesPath: ./package.json
+    compatibleRuntimes: ["nodejs18.x"]
+    NODE_ENV: ${self:provider.stage}
+plugins:
+  - serverless-layers
 functions:
   function1:
     handler: index.handler

@@ -12,7 +12,7 @@ module.exports.handler = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: `Trigger @ ${dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')}`,
+        message: `Trigger @ ${dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')} `,
         input: event,
       },
       null,
