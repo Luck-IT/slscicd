@@ -13,6 +13,7 @@ module.exports.handler = async (event) => {
     body: JSON.stringify(
       {
         message: `Trigger @ ${dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')} `,
+        code: 'Hello World',
         input: event,
       },
       null,
