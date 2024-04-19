@@ -17,4 +17,6 @@ jobs:
   deploy_using_sls:
     uses: ./.github/workflows/serverless-deploy.yml
     secrets: inherit
+    with:
+      stage: ${{ env.stage }}
 

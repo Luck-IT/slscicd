@@ -1,10 +1,17 @@
 name: Deploy SLS
 run-name: running SLS deployment 🚀
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      stage:
+        description: deploy stage
+        required: true
+        type: string
 jobs:
   deploy_to_aws_using_serverlessFramework:
     runs-on: ubuntu-latest
+    env:
+      stage: ${{ inputs.stage }}
     steps:
       - name: check out repository code
         uses: actions/checkout@master
