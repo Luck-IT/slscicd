@@ -1,0 +1,31 @@
+name: Deploy SLS
+run-name: running SLS deployment 🚀
+on:
+  workflow_call:
+    secrets:
+      aws-key-id:
+        description: 'AWS KEY ID'
+        required: true
+      aws-key:
+        description: 'AWS KEY'
+        required: true
+jobs:
+  deploy_to_aws_using_serverlessFramework:
+    runs-on: ubuntu-latest
+    steps:
+      - name: serverless deploy
+        id: serverless-deploy
+        run: sls deploy --stage ${{ env.stage }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.aws-key-id }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.aws-key }}
+      - if: ${{ success() }}
+        run: echo "${{ github.triggering_actor }} the workflow success"
+      #      - name: serverless deploy test
+#        uses: hdev14/sls-deploy-action@main
+#        with:
+#          awsAccessKeyID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          awsSecretAccessKey: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          stage: 'beta'
+#          region: 'us-east-1'
+      - run: echo "This job's status is ${{ job.status }}"
