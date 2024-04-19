@@ -44,11 +44,14 @@ jobs:
           npm install -D @serverless/compose
           npm install -D serverless-layers
       - name: serverless deploy
+        id: serverless-deploy
         run: sls deploy --stage beta
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#      - name: serverless deploy test
+      - if: ${{ success() }}
+        run: echo "${{ github.triggering_actor }} the workflow success"
+      #      - name: serverless deploy test
 #        uses: hdev14/sls-deploy-action@main
 #        with:
 #          awsAccessKeyID: ${{ secrets.AWS_ACCESS_KEY_ID }}
