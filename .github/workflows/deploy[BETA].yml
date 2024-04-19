@@ -3,7 +3,6 @@ run-name: ${{ github.actor }} is deploying the Project to [BETA] STAGE
 on: [push]
 permissions: read-all
 env:
-  stage: beta
   service: service-a service-b
 
 jobs:
@@ -18,5 +17,5 @@ jobs:
     uses: ./.github/workflows/serverless-deploy.yml
     secrets: inherit
     with:
-      stage: ${{ env.stage }}
+      stage: beta
 
