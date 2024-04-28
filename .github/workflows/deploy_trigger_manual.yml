@@ -21,3 +21,7 @@ jobs:
         run: echo $PATH
       - name: test input
         run: echo ${{ inputs.service }}
+      - name: set node
+        uses: actions/setup-node@v4.0.2
+        with: 
+          node-version: 18
