@@ -1,6 +1,7 @@
 name: Deploy sls to BETA
 run-name: ${{ github.actor }} is deploying the Project to [BETA] STAGE
-on: [push]
+on: workflow_dispatch
+
 permissions: read-all
 env:
   service: service-a service-b
