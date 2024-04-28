@@ -6,9 +6,9 @@ provider:
   stage: ${opt:stage,'dev'}
   runtime: nodejs18.x
 
-functions:
-  function1:
-    handler: index.handler
+#functions:
+#  function1:
+#    handler: index.handler
 
 
 resources:
