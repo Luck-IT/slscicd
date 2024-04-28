@@ -12,6 +12,7 @@ on:
           - beta
           - gofam-prod
           - dev
+permissions: read-all
 
 jobs:
   test:
@@ -26,6 +27,10 @@ jobs:
         with: 
           node-version: 18
       - name: test node
-        run: node -v 
+        run: node -v
+      - name: checkout repository
+        uses: action/checkout@v2
+      - name: check branch
+        run: git branch
       - name: install dependencies
         run: npm run install
