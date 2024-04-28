@@ -1,0 +1,11 @@
+name: deploy manually
+run-name: ${{ github.actor }} deploy the Project mannually
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo $PATH
