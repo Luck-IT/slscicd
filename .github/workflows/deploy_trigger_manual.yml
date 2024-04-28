@@ -33,4 +33,4 @@ jobs:
       - name: check branch
         run: git branch
       - name: install dependencies
-        run: npm run install
+        run: npm install
