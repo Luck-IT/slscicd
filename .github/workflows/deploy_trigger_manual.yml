@@ -2,6 +2,16 @@ name: deploy manually
 run-name: ${{ github.actor }} deploy the Project mannually
 on:
   workflow_dispatch:
+    inputs:
+      service:
+        required: true
+        default: beta
+        type: choice
+        description: test
+        options:
+          - beta
+          - gofam-prod
+          - dev
 
 jobs:
   test:
@@ -9,3 +19,5 @@ jobs:
     steps:
       - name: test
         run: echo $PATH
+      - name: test input
+        run: echo ${{ inputs.service }}
