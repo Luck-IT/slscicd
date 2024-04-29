@@ -15,7 +15,7 @@ module.exports.handler = async (event) => {
         message: `Trigger @ ${dayjs().format('YYYY-MM-DD HH:mm:ss.SSS')} `,
         code: 'Hello World',
         input: event,
-        test: 'test deployment service a again8',
+        test: 'test deployment service a again9',
       },
       null,
       2
