@@ -10,6 +10,7 @@ module.exports.handler = async (event) => {
       {
         message: 'Go Serverless v3.0! Your function executed successfully!',
         input: event,
+        change:'change 1'
       },
       null,
       2
