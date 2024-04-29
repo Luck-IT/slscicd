@@ -1,9 +1,12 @@
-service: slsCD
+service: service-b
 frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: ${opt:stage,'dev'}
+  environment:
+    SHARED_VALUE: ${param:sharedValueB}
 
 functions:
   function1:

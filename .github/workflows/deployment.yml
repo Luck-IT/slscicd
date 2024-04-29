@@ -57,4 +57,4 @@ jobs:
           rm serverless-compose.yml
           mv serverless-compose.yml.tmp serverless-compose.yml
       - name: deploy_services
-        run: sls ${{ inputs.service }}:deploy --stage ${{ stage }}
+        run: sls ${{ inputs.service }}:deploy --stage ${{ inputs.stage }}
