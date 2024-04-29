@@ -34,3 +34,8 @@ jobs:
         run: git branch
       - name: install dependencies
         run: npm install
+      - name: show path
+        run: |
+          echo pwd: $(pwd)
+          echo workspace: ${{ github.workspace }}
+          echo action path: ${{ github.action_path }}
