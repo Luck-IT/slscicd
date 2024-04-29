@@ -28,7 +28,6 @@ jobs:
       - name: test node environment
         run: |
           node -v
-          npm install -g serverless
       - name: checkout repository
         uses: actions/checkout@v2
       - name: check branch
@@ -39,6 +38,8 @@ jobs:
         with:
           key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
           path: ~/.npm
+      - name: install serverless
+        run: npm install -g serverless
       - name: install dependencies
         run: npm install
       - name: show npm install list
