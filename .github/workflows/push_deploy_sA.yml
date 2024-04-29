@@ -16,4 +16,5 @@ jobs:
     with:
       stage: beta
       service: service-a
+      secrets: inherit
 
