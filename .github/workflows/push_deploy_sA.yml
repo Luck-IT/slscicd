@@ -8,13 +8,11 @@ on:
       - 'service-a/**/*.js'
       - 'service-a/*.json'
       - 'service-a/*.yml'
-permissions: read-all
 
 jobs:
   call-deployment-workflow:
     uses: ./.github/workflows/deployment.yml
     with:
-      secrets: inherit
       stage: beta
       service: service-a
 
