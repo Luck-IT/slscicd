@@ -1,0 +1,41 @@
+name: deploy manually
+run-name: ${{ github.actor }} deploy the Project mannually
+on:
+  workflow_dispatch:
+    inputs:
+      service:
+        required: true
+        default: beta
+        type: choice
+        description: test
+        options:
+          - beta
+          - gofam-prod
+          - dev
+permissions: read-all
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo $PATH
+      - name: test input
+        run: echo ${{ inputs.service }}
+      - name: set node
+        uses: actions/setup-node@v4.0.2
+        with: 
+          node-version: 18
+      - name: test node
+        run: node -v
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: check branch
+        run: git branch
+      - name: install dependencies
+        run: npm install
+      - name: show path
+        run: |
+          echo pwd: $(pwd)
+          echo workspace: ${{ github.workspace }}
+          echo action path: ${{ github.action_path }}

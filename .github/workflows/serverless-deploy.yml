@@ -1,0 +1,51 @@
+name: Deploy SLS
+run-name: running SLS deployment 🚀
+on:
+  workflow_call:
+    inputs:
+      stage:
+        description: deploy stage
+        required: true
+        type: string
+jobs:
+  deploy_to_aws_using_serverlessFramework:
+    runs-on: ubuntu-latest
+    env:
+      stage: ${{ inputs.stage }}
+    steps:
+      - name: check out repository code
+        uses: actions/checkout@master
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - name: Configuration NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Check Node Version
+        run: node -v
+      - name: Cache Node Modules
+        id: npm_cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
+      - if: ${{ steps.npm_cache.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
+      - name: Install Serverless Framework
+        run: |
+          npm install -g serverless
+          npm install -D @serverless/compose
+          npm install -D serverless-layers
+      - name: serverless deploy
+        id: serverless-deploy
+        run: sls deploy --stage ${{ env.stage }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - if: ${{ success() }}
+        run: echo "${{ github.triggering_actor }} the workflow success"
+      - run: echo "This job's status is ${{ job.status }}"
