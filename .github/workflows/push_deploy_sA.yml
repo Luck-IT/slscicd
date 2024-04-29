@@ -8,6 +8,7 @@ on:
       - 'service-a/**/*.js'
       - 'service-a/*.json'
       - 'service-a/*.yml'
+permissions: read-all
 
 jobs:
   call-deployment-workflow:
