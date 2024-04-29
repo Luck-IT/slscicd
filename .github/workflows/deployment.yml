@@ -10,8 +10,6 @@ on:
         required: true
         default: beta
         type: string
-permissions: read-all
-
 
 jobs:
   deploy:
