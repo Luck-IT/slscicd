@@ -60,8 +60,8 @@ jobs:
           echo 'services:'>>serverless-compose.yml
           echo ' shared:'>>serverless-compose.yml
           echo '  path: shared'>>serverless-compose.yml
-          sls shared:deploy --stage ${{ inputs.stage }}
+          sls shared:deploy --stage ${{ inputs.stage }} --verbose
           rm serverless-compose.yml
           mv serverless-compose.yml.tmp serverless-compose.yml
       - name: deploy_services
-        run: sls ${{ inputs.service }}:deploy --stage ${{ inputs.stage }}
+        run: sls ${{ inputs.service }}:deploy --stage ${{ inputs.stage }} --verbose
