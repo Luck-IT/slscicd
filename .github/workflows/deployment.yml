@@ -44,7 +44,7 @@ jobs:
         id: cache_shared
         uses: actions/cache@v3
         with:
-          key: ${{ ruuner.os }}-shared-${{ hashFiles('shared/*.js','shared/package.json','shared/*.yml') }}
+          key: ${{ runner.os }}-shared-${{ hashFiles('shared/*.js','shared/package.json','shared/*.yml') }}
           path: '.serverless'
       - name: build shared
         if: ${{ steps.cache_shared.inputs.cache-hit != 'true' }}
