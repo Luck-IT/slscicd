@@ -1,0 +1,60 @@
+name: deploy manually
+run-name: ${{ github.actor }} deploy the Project mannually
+on:
+  workflow_call:
+    inputs:
+      service:
+        required: true
+        type: string
+      stage:
+        required: true
+        default: beta
+        type: string
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo $PATH
+      - name: test input
+        run: echo ${{ inputs.service }}
+      - name: set node
+        uses: actions/setup-node@v4.0.2
+        with: 
+          node-version: 18
+      - name: test node
+        run: node -v
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: check branch
+        run: git branch
+      - name: check shared
+        uses: actions/cache@v3
+        id: cache_npm
+        with:
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package.json') }}
+          path: ~/.npm
+      - name: install dependencies
+        run: npm install
+      - name: show npm install list
+        run: npm list
+      - name: cache_shared
+        id: cache_shared
+        uses: actions/cache@v3
+        with:
+          key: ${{ ruuner.os }}-shared-${{ hashFiles('shared/*.js','shared/package.json','shared/*.yml') }}
+          path: '.serverless'
+      - name: build shared
+        if: ${{ steps.cache_shared.inputs.cache-hit != 'true' }}
+        run: |
+          mv serverless-compose.yml serverless-compose.yml.tmp
+          echo 'services:'>>serverless-compose.yml
+          echo ' shared:'>>serverless-compose.yml
+          echo '  path: shared'>>serverless-compose.yml
+          sls shared:deploy --stage ${{ inputs.stage }}
+          rm serverless-compose.yml
+          mv serverless-compose.yml.tmp serverless-compose.yml
+      - name: deploy_services
+        run: sls ${{ inputs.service }}:deploy --stage ${{ stage }}

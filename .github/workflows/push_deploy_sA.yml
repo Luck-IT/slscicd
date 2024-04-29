@@ -1,0 +1,20 @@
+name: deploy service-a to aws
+run-name: ${{ github.actor }} deploying service-a toAWS
+on:
+  push:
+    branches:
+      - github_action
+    paths:
+      - 'service-a/**/*.js'
+      - 'service-a/*.json'
+      - 'service-a/*.yml'
+permissions: read-all
+
+jobs:
+  call-deployment-workflow:
+    uses: ./.github/workflows/deployment.yml
+    with:
+      secrets: inherit
+      stage: beta
+      service: service-a
+
